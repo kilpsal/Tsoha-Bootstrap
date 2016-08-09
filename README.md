@@ -5,7 +5,7 @@ Tämä on muistilista! Jipii hyvä SUOMI!
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://salkilpi.users.cs.helsinki.fi/tsoha)
-* [Linkki dokumentaatiooni](https://github.com/kilpsal/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
+* [Linkki dokumentaatiooni](https://github.com/kilpsal/Tsoha-Bootstrap/blob/master/doc/Dokumentaatio.pdf)
 
 ## Työn aihe
 
