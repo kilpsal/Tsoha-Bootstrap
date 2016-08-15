@@ -15,3 +15,7 @@
   $routes->get('/esittely', function() {
     HelloWorldController::esittely();
   });
+  
+  $routes->get('/plototo', function() {
+      AskareController::index();
+  });
