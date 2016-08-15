@@ -52,5 +52,17 @@ class Askare extends BaseModel {
 
         return null;
     }
+    
+    public function save() {
+
+        $query = DB::connection()->prepare('INSERT INTO Askare (nimi, tarkeys, luokka, kayttaja_id, paikka_id) VALUES (:nimi, :tarkeys, :luokka, :kayttaja_id, :paikka_id) RETURNING id');
+
+        $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys, 'luokka' => $this->luokka, 'kayttaja_id' => $this->kayttaja_id, 'paikka_id' => $this->paikka_id));
+
+        $row = $query->fetch();
+
+        $this->id = $row['id'];
+    }
+
 
 }
