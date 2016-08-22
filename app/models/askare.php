@@ -2,10 +2,11 @@
 
 class Askare extends BaseModel {
 
-    public $nimi, $tarkeys, $luokka, $paikka_id, $kayttaja_id;
+    public $id, $nimi, $tarkeys, $luokka, $paikka_id, $kayttaja_id;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi','validate_tarkeys');
     }
 
     public static function all() {
@@ -62,6 +63,49 @@ class Askare extends BaseModel {
         $row = $query->fetch();
 
         $this->id = $row['id'];
+    }
+    public function update(){
+        $query = DB::connection()->prepare('UPDATE Askare (nimi, tarkeys, luokka, kayttaja_id, paikka_id) VALUES (:nimi, :tarkeys, :luokka, :kayttaja_id, :paikka_id) RETURNING id');
+
+        $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys, 'luokka' => $this->luokka, 'kayttaja_id' => $this->kayttaja_id, 'paikka_id' => $this->paikka_id));
+
+        $row = $query->fetch();
+
+        $this->id = $row['id'];
+
+    }
+    public function destroy(){
+        
+        $query = DB::connection()->prepare('DELETE from Askare WHERE id = :id LIMIT 1');
+  
+        $query->execute(array('id' == $this->id)); 
+
+    }
+
+    public function validate_nimi(){
+        $errors = array();
+        if($this->nimi == '' || $this->nimi == null){
+            $errors[] = "Askareella on oltava nimi";
+        }
+        if(strlen($this->nimi) < 4){
+            $errors[] = "Nimen on oltava vähintään neljä merkkiä";
+        }
+
+        return $errors;
+
+    }
+    public function validate_tarkeys(){
+        $errors = array();
+        if($this->tarkeys == '' || $this->tarkeys == null){
+            $errors[] = "Askareella on oltava tarkeys";
+        }
+        if(is_numeric($this->tarkeys) == 0){
+            $errors[] = "Tärkeys on oltava kokonaisluku";
+        }
+        if($this->tarkeys > 5 || $this->tarkeys < 1){
+            $errors[] = "Tärkeys on oltava välillä 1-5";
+        }
+        return $errors;
     }
 
 

@@ -10,11 +10,15 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $askare = Askare::find(1);
-        $askareet = Askare::all();
-        // Kint-luokan dump-metodi tulostaa muuttujan arvon
-        Kint::dump($askare);
-        Kint::dump($askareet);
+        $askare = new Askare(array(
+            'nimi' => '',
+            'tarkeys' => '',
+            'luokka' => 'hönnönö',
+            'paikka_id' => 1,
+            'kayttaja_id' => 1
+            ));
+
+        Kint::dump($askare->errors());
     }
 
     public static function muokkaus() {

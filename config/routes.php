@@ -16,3 +16,21 @@ $routes->get('/askare/new', function() {
 $routes->get('/askare/:id', function($id) {
     AskareController::show($id);
 });
+$routes->get('/askare/:id/edit', function($id){
+	AskareController::edit($id);
+});
+$routes->post('/askare/:id/edit', function($id){
+	AskareContoller::update($id);
+});
+$routes->post('/askare/:id/destroy', function($id){
+	AskareController::destroy($id);
+});
+
+
+
+
+
+$routes->get('/hiekkalaatikko', function(){
+	HelloWorldController::sandbox();
+});
+
