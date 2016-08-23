@@ -65,9 +65,9 @@ class Askare extends BaseModel {
         $this->id = $row['id'];
     }
     public function update(){
-        $query = DB::connection()->prepare('UPDATE Askare (nimi, tarkeys, luokka, kayttaja_id, paikka_id) VALUES (:nimi, :tarkeys, :luokka, :kayttaja_id, :paikka_id) RETURNING id');
+        $query = DB::connection()->prepare('UPDATE Askare SET nimi = :nimi, tarkeys = :tarkeys, luokka = :luokka, kayttaja_id = :kayttaja_id, paikka_id = :paikka_id WHERE id = :id RETURNING id');
 
-        $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys, 'luokka' => $this->luokka, 'kayttaja_id' => $this->kayttaja_id, 'paikka_id' => $this->paikka_id));
+        $query->execute(array('id' => $this->id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys, 'luokka' => $this->luokka, 'kayttaja_id' => $this->kayttaja_id, 'paikka_id' => $this->paikka_id));
 
         $row = $query->fetch();
 
@@ -76,9 +76,8 @@ class Askare extends BaseModel {
     }
     public function destroy(){
         
-        $query = DB::connection()->prepare('DELETE from Askare WHERE id = :id LIMIT 1');
-  
-        $query->execute(array('id' == $this->id)); 
+        $query = DB::connection()->prepare('DELETE FROM Askare WHERE id = :id');
+        $query->execute(array('id' => $this->id));
 
     }
 

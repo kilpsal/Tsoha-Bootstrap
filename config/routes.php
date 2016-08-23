@@ -2,7 +2,7 @@
 
 
 $routes->get('/', function() {
-    AskareController::index();
+    AskareController::index(); 
 });
 
 $routes->post('/askare', function() {
@@ -20,11 +20,23 @@ $routes->get('/askare/:id/edit', function($id){
 	AskareController::edit($id);
 });
 $routes->post('/askare/:id/edit', function($id){
-	AskareContoller::update($id);
+	AskareController::update($id);
 });
 $routes->post('/askare/:id/destroy', function($id){
 	AskareController::destroy($id);
 });
+
+
+#KayttajaController
+
+$routes->get('/login', function(){
+	KayttajaController::login();
+});
+$routes->post('/login', function(){
+	KayttajaController::handle_login();
+});
+
+
 
 
 

@@ -41,6 +41,15 @@
             <!-- Navigaation linkit -->
             <li><a href="{{base_path}}">Etusivu</a></li>
           </ul>
+          {% if user_logged_in == false %}
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{base_path}}/login">Kirjaudu sisään</a></li>
+            </ul>
+          {% else %}
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{base_path}}/logout">Kirjaudu ulos</a></li>
+            </ul>
+          {% endif %}
         </div>
       </div>
     </nav>

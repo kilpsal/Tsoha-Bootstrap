@@ -36,7 +36,12 @@ class AskareController extends BaseController {
     
     public static function show($id) {
         $askare = Askare::find($id);
-        View::make('askare/show.html', array('askare' => $askare));
+        if($askare){
+            View::make('askare/show.html', array('askare' => $askare));
+        }else{
+            Redirect::to('/');
+        }
+        
         
     }
     public static function create(){
@@ -64,17 +69,17 @@ class AskareController extends BaseController {
         if(count($errors) > 0){
             View::make('askare/edit.html', array('errors' =>  $errors, 'attributes' => $attributes));
         }else{
-            $game->update();
+            $askare->update();
             Redirect::to('/askare/' . $askare->id, array('message' => 'Muokattu onnistuneesti!'));
         }
 
     }
-    public static function destroy(){
+    public static function destroy($id){
         $askare = new Askare(array('id' => $id));
 
         $askare->destroy();
 
-        Redirect::to('/askare', array('message' => 'Askare on poistettu'));
+        Redirect::to('/', array('message' => 'Askare on poistettu'));
 
     }
     
