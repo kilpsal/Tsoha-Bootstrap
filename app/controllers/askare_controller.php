@@ -3,11 +3,14 @@
 class AskareController extends BaseController {
 
     public static function index() {
+        self::check_logged_in();
+
         $askareet = Askare::all();
         View::make('askare/index.html', array('askareet' => $askareet));
     }
 
     public static function store() {
+        self::check_logged_in();
 
         $params = $_POST;
         $attributes = array(
@@ -35,6 +38,8 @@ class AskareController extends BaseController {
     }
     
     public static function show($id) {
+        self::check_logged_in();
+
         $askare = Askare::find($id);
         if($askare){
             View::make('askare/show.html', array('askare' => $askare));
@@ -45,15 +50,20 @@ class AskareController extends BaseController {
         
     }
     public static function create(){
-        
+        self::check_logged_in();
+
         View::make('askare/new.html');
     }
     public static function edit($id){
+        self::check_logged_in();
+
         $askare = Askare::find($id);
         View::make('askare/edit.html', array('askare' => $askare));
 
     }
     public static function update($id){
+        self::check_logged_in();
+
         $params = $_POST;
         $attributes = array(
             'id' => $id,
@@ -75,6 +85,8 @@ class AskareController extends BaseController {
 
     }
     public static function destroy($id){
+        self::check_logged_in();
+
         $askare = new Askare(array('id' => $id));
 
         $askare->destroy();

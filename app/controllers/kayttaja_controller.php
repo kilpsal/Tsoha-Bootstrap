@@ -3,6 +3,8 @@
 class KayttajaController extends BaseController {
 
     public static function index() {
+        self::check_logged_in();
+
         $kayttajat = Kayttaja::all();
         View::make('kayttaja/index.html', array('kayttajat' => $kayttajat));
     }
@@ -33,6 +35,8 @@ class KayttajaController extends BaseController {
     }
     
     public static function show($id) {
+        self::check_logged_in();
+
         $kayttaja = Kayttaja::find($id);
         if($kayttaja){
             View::make('kayttaja/show.html', array('kayttaja' => $kayttaja));
@@ -47,6 +51,8 @@ class KayttajaController extends BaseController {
         View::make('kayttaja/new.html');
     }
     public static function destroy($id){
+        self::check_logged_in();
+
         $kayttaja = new Kayttaja(array('id' => $id));
 
         $kayttaja->destroy();
@@ -74,6 +80,11 @@ class KayttajaController extends BaseController {
 
             Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $kayttaja->kayttajatunnus . '!'));
         }
+    }
+    public static function logout(){
+        $_SESSION['user'] = null;
+
+        Redirect::to('/', array('message' => 'Onnistunut uloskirjaus.'));
     }
     
 

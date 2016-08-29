@@ -35,7 +35,9 @@ $routes->get('/login', function(){
 $routes->post('/login', function(){
 	KayttajaController::handle_login();
 });
-
+$routes->post('/logout', function(){
+	KayttajaController::logout();
+});
 
 
 
