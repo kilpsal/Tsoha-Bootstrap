@@ -10,9 +10,9 @@ class Askare extends BaseModel {
     }
 
     public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Askare');
+        $query = DB::connection()->prepare('SELECT * FROM Askare WHERE kayttaja_id = :kayttaja_id');
 
-        $query->execute();
+        $query->execute(array('kayttaja_id' => $_SESSION['user']));
 
         $rows = $query->fetchAll();
         $askareet = array();

@@ -14,27 +14,30 @@
 <form method="post" action="{{base_path}}/askare/{{askare.id}}/edit">
     <div class="form-group">
         <label>Nimi</label>
-        <input name="nimi" class="form-control" type="text">
+        <input name="nimi" class="form-control" type="text" value="{{askare.nimi}}">
     </div>
 
     <div class="form-group">
         <label>Tärkeys</label>
-        <input name="tarkeys" class="form-control" type="text">
+        <input name="tarkeys" class="form-control" type="text" value="{{askare.tarkeys}}">
     </div>
 
     <div class="form-group">
         <label>Luokka</label>
-        <input name="luokka" class="form-control" type="text">
+        <input name="luokka" class="form-control" type="text" value="{{askare.luokka}}">
     </div>
 
     <div class="form-group">
-        <label>Käyttäjä_id</label>
-        <input name="kayttaja_id" class="form-control" type="number">
+        <input name="kayttaja_id" class="form-control" type="hidden" value="{{askare.kayttaja_id}}">
     </div>
 
     <div class="form-group">
-        <label>Paikka_id</label>
-        <input name="paikka_id" class="form-control" type="number">
+        <label>Paikka</label>
+        <select class="form-control" name="paikka_id" value="{{askare.paikka_id}}">
+        {% for paikka in paikat %}
+            <option value="{{paikka.id}}">{{paikka.nimi}}</option>
+        {% endfor %}
+        </select>
     </div>
 
     <div class="form-group">

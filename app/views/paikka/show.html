@@ -5,29 +5,23 @@
     <thead>
         <tr>
             <th>Nimi</th>
-            <th>Tärkeys</th>
-            <th>Luokka</th>
-            <th>Paikka</th>
-
-
+            <th>Osoite</th>
         </tr>
     </thead>
 
     <tbody>
 
         <tr>
-            <td>{{askare.nimi}}</td>
-            <td>{{askare.tarkeys}}</td>
-            <td>{{askare.luokka}}</td>
             <td>{{paikka.nimi}}</td>
+            <td>{{paikka.osoite}}</td>
         </tr>
 
 
     </tbody>
 </table>
 
-    {{forms.edit_button("#{base_path}/askare/#{askare.id}/edit")}}
+<!--    {{forms.edit_button("#{base_path}/askare/#{askare.id}/edit")}}
     {{forms.destroy_button("#{base_path}/askare/#{askare.id}/destroy")}}
- 
+-->
 
 {% endblock %}

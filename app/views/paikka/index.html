@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+{{message}}
+
+{% if paikat == null %}
+    <h1>Ei vielä paikkoja</h1>
+{% else %}
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Osoite</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paikka in paikat %}
+        <tr>
+            <td><a href="{{base_path}}/paikka/{{paikka.id}}">{{paikka.nimi}}</a></td>
+            <td>{{paikka.osoite}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endif %}
+<form method="get" action="{{base_path}}/paikka/new" style="display: inline-block;">
+  <button type="submit" class="btn btn-danger">Uusi paikka</button>
+</form>
+{% endblock %}

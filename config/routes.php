@@ -35,10 +35,25 @@ $routes->get('/login', function(){
 $routes->post('/login', function(){
 	KayttajaController::handle_login();
 });
-$routes->post('/logout', function(){
+$routes->get('/logout', function(){
 	KayttajaController::logout();
 });
 
+
+#PaikkaController
+
+$routes->get('/paikat', function(){
+	PaikkaController::index();
+});
+$routes->get('/paikka/new', function(){
+	PaikkaController::create();
+});
+$routes->post('/paikka', function(){
+	PaikkaController::store();
+});
+$routes->get('/paikka/:id', function($id){
+	PaikkaController::show($id);
+});
 
 
 

@@ -61,7 +61,7 @@ class KayttajaController extends BaseController {
 
     }
     public static function login(){
-        if(isset($SESSION['user'])){
+        if(isset($_SESSION['user'])){
             Redirect::to('/', array('message' => 'Olet jo kirjautunut'));
         }else{
             View::make('/kayttaja/login.html');
@@ -84,9 +84,8 @@ class KayttajaController extends BaseController {
     public static function logout(){
         $_SESSION['user'] = null;
 
-        Redirect::to('/', array('message' => 'Onnistunut uloskirjaus.'));
+        Redirect::to('/login', array('message' => 'Onnistunut uloskirjaus.'));
     }
-    
 
 
     

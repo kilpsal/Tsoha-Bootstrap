@@ -6,7 +6,8 @@ class AskareController extends BaseController {
         self::check_logged_in();
 
         $askareet = Askare::all();
-        View::make('askare/index.html', array('askareet' => $askareet));
+        $paikat = Paikka::all();
+        View::make('askare/index.html', array('askareet' => $askareet, 'paikat' => $paikat));
     }
 
     public static function store() {
@@ -41,8 +42,9 @@ class AskareController extends BaseController {
         self::check_logged_in();
 
         $askare = Askare::find($id);
+        $paikka = Paikka::find($askare->paikka_id);
         if($askare){
-            View::make('askare/show.html', array('askare' => $askare));
+            View::make('askare/show.html', array('askare' => $askare, 'paikka' => $paikka));
         }else{
             Redirect::to('/');
         }
@@ -52,13 +54,16 @@ class AskareController extends BaseController {
     public static function create(){
         self::check_logged_in();
 
-        View::make('askare/new.html');
+        $paikat = Paikka::all();
+
+        View::make('askare/new.html', array('paikat' => $paikat));
     }
     public static function edit($id){
         self::check_logged_in();
 
         $askare = Askare::find($id);
-        View::make('askare/edit.html', array('askare' => $askare));
+        $paikat = Paikka::all();
+        View::make('askare/edit.html', array('askare' => $askare, 'paikat' => $paikat));
 
     }
     public static function update($id){

@@ -18,8 +18,8 @@
     </div>
 
     <div class="form-group">
-        <label>Tärkeys</label>
-        <input name="tarkeys" class="form-control" type="text">
+        <label>Tärkeys <i>(1-5)</i></label>
+        <input name="tarkeys" class="form-control" type="number" min="1" max="5">
     </div>
 
     <div class="form-group">
@@ -28,13 +28,17 @@
     </div>
 
     <div class="form-group">
-        <label>Käyttäjä_id</label>
-        <input name="kayttaja_id" class="form-control" type="number">
+
+        <input name="kayttaja_id" class="form-control" type="hidden" value="{{user_logged_in.id}}">
     </div>
 
     <div class="form-group">
-        <label>Paikka_id</label>
-        <input name="paikka_id" class="form-control" type="number">
+        <label>Paikka</label>
+        <select class="form-control" name="paikka_id">
+        {% for paikka in paikat %}
+            <option value="{{paikka.id}}">{{paikka.nimi}}</option>
+        {% endfor %}
+        </select>
     </div>
 
     <div class="form-group">
